@@ -1,0 +1,60 @@
+
+line = input()
+forces_dict = {}
+while not line == "Lumpawaroo":
+    is_found = False
+    second_command = False
+    user_found = False
+    line_test = line.split(" | ")
+    if len(line_test) >1:
+        side_to_join, user_to_join = line_test
+        for side, users in forces_dict.items():
+            if user_to_join in users:
+                user_found = True
+                break
+        if user_found:
+            break
+
+        if side_to_join not in forces_dict:
+            forces_dict[side_to_join] = []
+            forces_dict[side_to_join].append(user_to_join)
+        else:
+            for key, value in forces_dict.items():
+                if user_to_join in value:
+                    is_found = True
+            if is_found:
+                pass
+            else:
+                forces_dict[side_to_join].append(user_to_join)
+
+    else:
+        second_command = True
+        line_test = line.split(" -> ")
+        user_to_join, side_to_join = line_test
+        if side_to_join not in forces_dict:
+            forces_dict[side_to_join] = []
+            forces_dict[side_to_join].append(user_to_join)
+        for side, jedi in forces_dict.items():
+            if user_to_join in jedi:
+                is_found = True
+                forces_dict[side].pop(jedi.index(user_to_join))
+        if is_found:
+            forces_dict[side_to_join].append(user_to_join)
+        else:
+            forces_dict[side_to_join].append(user_to_join)
+    if second_command:
+        print(f'{user_to_join} joins the {side_to_join} side!')
+
+
+
+    line = input()
+
+
+for keys, values in forces_dict.items():
+    if len(values) <=0:
+        pass
+    else:
+        print(f'Side: {keys}, Members: {len(values)}')
+        for members in values:
+            print(f'! {members}')
+
