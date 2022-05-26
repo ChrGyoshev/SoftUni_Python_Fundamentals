@@ -1,45 +1,45 @@
-event = input().split("|")
-energy = 100
+string = input().split("|")
 coins = 100
-failed_event = False
-for current_event in event:
+energy = 100
+REST_ENG = 50
+MAX_ENG = 100
+ORDER_ENG = 30
+is_not_bankrupt = True
+for i in string:
+    single_event_list = i.split("-")
+    event = single_event_list[0]
+    number = int(single_event_list[1])
+    if event == "rest":
+        gained_energy = 0
+        if energy + number > MAX_ENG:
+            gained_energy = MAX_ENG - energy
+            energy = MAX_ENG
+        else:
+            energy += number
+            gained_energy = number
+        print(f"You gained {gained_energy} energy.")
+        print(f"Current energy: {energy}.")
 
-    command, value = current_event.split("-")
-    value = int(value)
-    if failed_event == True:
-        break
-    if command == "rest":
-        if energy == 100:
-            value = 0
+    elif event == "order":
+        if energy >= ORDER_ENG:
+            energy -= ORDER_ENG
+            coins += number
+            print(f"You earned {number} coins.")
+
         else:
-            energy += value
-        print(f'You gained {value} energy.')
-        print(f'Current energy: {energy}.')
-    elif command == "order":
-        if energy >=30:
-            energy -= 30
-            coins += value
-            print(f'You earned {value} coins.')
-        else:
-            energy += 50
+            energy += REST_ENG
             print("You had to rest!")
             continue
     else:
-
-        if coins > value:
-            print(f'You bought {command}.')
-            coins -= value
-
-
-
+        if coins >= number:
+            coins -= number
+            print(f"You bought {event}.")
         else:
-            print(f'Closed! Cannot afford {command}.')
-            failed_event = True
+            print(f"Closed! Cannot afford {event}.")
+            is_not_bankrupt = False
             break
 
-
-
-if not failed_event:
+if is_not_bankrupt:
     print("Day completed!")
-    print(f'Coins: {coins}')
-    print(f'Energy: {energy}')
+    print(f"Coins: {coins}")
+    print(f"Energy: {energy}")
