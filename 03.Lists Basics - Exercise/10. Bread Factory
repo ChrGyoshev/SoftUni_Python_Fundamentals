@@ -38,9 +38,6 @@ for i in string:
             print(f"Closed! Cannot afford {event}.")
             is_not_bankrupt = False
             break
-#        if coins <= 0:
-#            is_not_bankrupt = False
-#            break
 
 if is_not_bankrupt:
     print("Day completed!")
