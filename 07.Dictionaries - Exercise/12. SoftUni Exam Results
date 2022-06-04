@@ -1,50 +1,28 @@
+command = input()
+submission = {}
+users = {}
+while not command == "exam finished":
+    command = command.split("-")
+    if command[1] == "banned":
+        del users[command[0]]
+        command =input()
+        continue
+    user = command[0]
+    lang = command[1]
+    points = int(command[2])
+    if not lang in submission:
+        submission[lang] = 0
+    submission[lang]+=1
+    if not user in users:
+        users[user] = points
+    if users[user] < points:
+        users[user] = points
 
-lines = input()
-submisssion = {}
-participate = {}
-while not lines == "exam finished":
-    lines = lines.split("-")
-    if len(lines) >2:
-        user, language, points = lines
-        points = int(points)
-        if language not in participate:
-            participate[language] = []
-        participate[language].append(user)
-        if language not in submisssion:
-            submisssion[language] = [{"name": user , "points": points}]
-        else:
-            for key, value in submisssion.items():
-                if key == language:
-                        for v in value:
-                            if v["name"] == user:
-                                if v["points"] < points:
-                                    v["points"] = points
-                            else:
-                                submisssion[language].append( {"name": user, "points": points})
 
-    else:
-        name,_ = lines
-        for keys, data in submisssion.items():
-            for datas in data:
-                if datas["name"]== name:
-                    del datas["name"]
-                    del datas["points"]
-    lines = input()
-
+    command = input()
 print("Results:")
-for el, sh in submisssion.items():
-    for hs in sh:
-        if len(hs)>0:
-            print(f"{hs['name']} | {hs['points']}")
-
+for user, points in users.items():
+    print(f'{user} | {points}')
 print("Submissions:")
-for lang, names in participate.items():
-    print(f"{lang} - {len(names)}")
-
-
-
-
-
-
-
-
+for s,v in submission.items():
+    print(f"{s} - {v}")
