@@ -9,3 +9,4 @@ while text:
     text = input()
 
 print(*dict, sep="\n")
+
