@@ -18,4 +18,3 @@ class Class:
         return float(middle_grade)
     def __repr__(self):
         return f"The students in {self.name}: {', '.join(self.students)}. Average grade: {self.get_average_grade():.2f}"
-

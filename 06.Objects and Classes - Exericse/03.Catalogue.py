@@ -16,4 +16,3 @@ class Catalogue:
         return  str_for_return
 
 
-

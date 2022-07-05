@@ -13,4 +13,3 @@ class Inventory:
         return f"Items: {', '.join(self.items)}.\nCapacity left: {self.get_capacity() - len(self.items)}"
 
 
-

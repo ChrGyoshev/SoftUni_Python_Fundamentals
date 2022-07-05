@@ -27,4 +27,3 @@ class Vehicle:
             return f"{self.model} {self.type} is on sale: {self.price}"
 
 
-
