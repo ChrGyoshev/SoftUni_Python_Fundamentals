@@ -1,7 +1,6 @@
 import re
 text = input()
-word = input()
+pattern = r"(^_|(?<=\s_))[A-Za-z0-9]+\b"
 
-pattern = rf"\b{word}\b"
-validator = re.findall(pattern, text, re.IGNORECASE)
-print(len(validator))
+validator = [obj.group()for obj in re.finditer(pattern, text)]
+print(*validator, sep= ",")
