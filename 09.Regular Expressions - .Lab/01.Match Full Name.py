@@ -1,5 +1,8 @@
 import re
+
 text = input()
-pattern = r"\+359(\s|-)2\1\d{3}\1\d{4}\b"
-valid = [obj.group() for obj in re.finditer(pattern,text)]
-print(*valid,sep = ", ")
+pattern = r"\b[A-Z][a-z]+\s[A-Z][a-z]+\b"
+
+valid = re.findall(pattern,text)
+
+print(*valid,sep=" ")
